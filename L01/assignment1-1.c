@@ -108,8 +108,13 @@ void check_sum(int size, double* array1, double* array2){
   for(int i = 0; i < size; i++){
     sum1 += array1[i];
     sum2 += array2[i];
-    printf("sum1[%d]: %f\n", i, sum1);
-    printf("sum2[%d]: %f\n", i, sum2);
+  
+    printf("ソート無しデータの和[%d番目まで]: %f\n", i, sum1);
+    printf("ソート有りデータの和[%d番目まで]: %f\n", i, sum2);
+    if(i+1 != size){
+    printf("次に和を取る値(ソート無し): %f\n", array1[i+1]);
+    printf("次に和を取る値(ソート有り): %f\n", array2[i+1]);
+    }
     printf("\n");
   }
 }
