@@ -163,8 +163,8 @@ void check_sum(list list1, list list2){
     if(data2 != NULL) sum2 += data2->dnum;
 
     
-    printf("sum1[%d]: %f\n", i, sum1);
-    printf("sum2[%d]: %f\n", i, sum2);
+    printf("ソート無しデータの和[%d番目まで]: %f\n", i, sum1);
+    printf("ソート有りデータの和[%d番目まで]: %f\n", i, sum2);
 
     if(data1->next != NULL && data2->next != NULL){
       printf("次に和を取る値(ソート無し): %f\n", data1->next->dnum);
