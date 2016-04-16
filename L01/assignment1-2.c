@@ -24,8 +24,6 @@ typedef struct{
 
 void abs_sort(list* list);
 
-data* add_node(void);
-
 void init_list(list* list);
 
 void print_list(list* list);
@@ -115,10 +113,6 @@ int main(void)
 void init_list(list* list){
   list->head = NULL;
   list->crnt = NULL;
-}
-
-data* add_node(void){
-  return (data*)malloc(sizeof(data));
 }
 
 void print_list(list* list){
