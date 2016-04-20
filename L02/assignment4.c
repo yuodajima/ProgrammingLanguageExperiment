@@ -40,7 +40,7 @@ int main(void){
   printf("----------------------------------------\n");
   fclose(fp);
 
-  printf("二分木内のデータを深さ優先で表示\n");
+  printf("二分木内のデータを昇順に取り出す\n");
   print_tree(root);
   printf("----------------------------------------\n");
   
@@ -90,10 +90,11 @@ void insert(Node** root, double dnum){
 void print_tree(Node* root){
   if(root != NULL){
   Node* cursor = root;
-  printf("data: %f\n", cursor->dnum);
   Node* left = root->left;
   Node* right = root->right;
+
   print_tree(left);
+  printf("data: %f\n", cursor->dnum);
   print_tree(right);
   }  
 }
