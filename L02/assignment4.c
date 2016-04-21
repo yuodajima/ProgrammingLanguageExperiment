@@ -1,4 +1,9 @@
 
+/*
+ *ポインタで二分木を作り，課題1について
+ *同様に絶対値昇順ソートし，総和をとる
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -13,7 +18,7 @@ int main(void){
 
   void insert(Node** root, double dnum);
   void make_tree(Node* root, double dnum);
-  void sum(Node* root);
+  double sum_tree(Node* root);
   void print_tree(Node* root);
 
   FILE *fp;
@@ -43,16 +48,8 @@ int main(void){
   printf("二分木内のデータを昇順に取り出す\n");
   print_tree(root);
   printf("----------------------------------------\n");
-  
-  //データを読み込んだ
 
-  //二分木に挿入した
-
-  //検索してって，絶対値順に和をとった
-
-  //結果を出力しました
-
-  //おしまい
+  printf("昇順に総和をとった結果: %f\n", sum_tree(root));
       
   return 0;
   
@@ -97,4 +94,18 @@ void print_tree(Node* root){
   printf("data: %f\n", cursor->dnum);
   print_tree(right);
   }  
+}
+
+double sum_tree(Node* root){
+  double result = 0;
+  if(root != NULL){
+    Node* cursor = root;
+    Node* left = root->left;
+    Node* right = root->right;
+    
+    result += sum_tree(left);
+    result += cursor->dnum;
+    result += sum_tree(right);
+  }
+  return result;
 }
