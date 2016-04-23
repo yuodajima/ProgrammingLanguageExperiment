@@ -17,6 +17,7 @@ typedef struct _Node{
 int main(void){
 
   void insert(Node** root, double dnum);
+  void abs_sort_insert(Node** new_root, Node* old_root);
   void make_tree(Node* root, double dnum);
   double sum_tree(Node* root);
   void print_tree(Node* root);
@@ -35,7 +36,7 @@ int main(void){
   }
 
    //成功->データ取り込み
-  printf("読み込んだデータ:\n");
+  printf("読み込んだデータ\n");
   int i = 0;
   while(fgets(s, 100, fp) != NULL){
     insert(&root, atof(s));
@@ -44,13 +45,21 @@ int main(void){
   printf("\n");
   printf("----------------------------------------\n");
   fclose(fp);
+  
+  //木に絶対値昇順ソートして挿入
+  Node* root2 = NULL;
+  abs_sort_insert(&root2, root);
 
-  printf("二分木内のデータを昇順に取り出す\n");
-  print_tree(root);
+  printf("ソート後二分木内のデータを昇順に取り出す\n");
+  print_tree(root2);
   printf("----------------------------------------\n");
 
+  //  printf("DEBUG:: %f\n",root_sorted->dnum);
+
   printf("昇順に総和をとった結果: %f\n", sum_tree(root));
-      
+
+
+  
   return 0;
   
 }
@@ -81,6 +90,18 @@ void insert(Node** root, double dnum){
      if(abs_new_dnum > abs_crnt_dnum) cursor->right = new_node;
   } else {
     *root = new_node;    
+  }
+}
+
+void abs_sort_insert(Node** new_root, Node* old_root){
+  if(old_root != NULL){
+    Node* cursor = old_root;    
+    Node* left = cursor->left;
+    Node* right = cursor->right;
+
+    abs_sort_insert(new_root, left);    
+    insert(new_root, cursor->dnum);
+    abs_sort_insert(new_root, right);
   }
 }
 

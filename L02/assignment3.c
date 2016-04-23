@@ -46,17 +46,17 @@ int main(void){
   input_token(&stack2, infix2);
   input_token(&stack3, infix3);
 
-  printf("読み込む中置記法の式:\n");
+  printf("読み込む中置記法の式\n");
   printf("式1: %s\n", infix1);
   printf("式2: %s\n", infix2);
   printf("式3: %s\n", infix3);
   printf("------------------------------\n");
 
-  printf("逆ポーランド記法へ変換し，出力:\n");
+  printf("逆ポーランド記法へ変換し，出力\n");
   printf("式1: "); reverse_polish(infix1);
   printf("式2: "); reverse_polish(infix2);
   printf("式3: "); reverse_polish(infix3);
-  printf("------------------------------\n");
+
   
   return 0;
 }
