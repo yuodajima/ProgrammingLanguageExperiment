@@ -1,0 +1,35 @@
+%実験方法
+実験は以下の方法で行った．
+\begin{enumerate}
+\item 課題3
+  \begin{enumerate}
+  \item 中置記法の式の文字列を用意し，式中のトークンについて優先順位を数値でつけた．
+  \item 各トークンをスタックを通じて優先順位の高いものから取り出す．
+  \item 出力結果が逆ポーランド記法になることを確認した．
+  \end{enumerate}
+\item 課題4
+  \begin{enumerate}
+  \item ポインタで二分木を作成し，数値データを格納する．
+  \item 格納は絶対値が小さい値を左の子に，大きい値を右の子に格納する．
+  \item 格納した数値を絶対値昇順ソートで並んだ順で和を取る．
+  \end{enumerate}
+\end{enumerate}
+データセットは講義サイトに用意してあったものを使用した．また，トークンと優先順位の対応は以下の通りとした．
+
+\begin{table}[htb]
+  \begin{center}
+    \caption{トークンと優先順位}
+    \begin{tabular}{|c||c|} \hline
+      トークン & 優先順位 \\\hline
+      非演算子 & 5        \\
+      \verb|(|& 4        \\
+      \verb|*|,/     & 3 \\
+      +,-     & 2        \\
+      \verb|)|& 1        \\
+      =       & 0        \\\hline 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+
