@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <head>
+	<title>課題1−4</title>
+    </head>
+    <body>
+	<img src ="https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/img1.png" name="myImg" onclick="resize10()">
+	
+    </body>
+    <script type="text/javascript">
+     var i = 0;
+
+     var resize10 =  function(){
+	 document.images["myImg"].width = 64 + 10 * i++;
+	 document.images["myImg"].height = 48 + 10 * i ++;	 
+     }
+     
+     resize10();
+
+    </script>
+</html>
