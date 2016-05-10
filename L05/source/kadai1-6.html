@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題1−6</title>
+    </head>
+    <body>
+	<img src ="https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/img1.png" name="my_img">
+	<input type="button" id="slide_button"
+	       value="スライドショー開始" onclick="start_slide()">
+    </body>
+    <script type="text/javascript">   
+     document.images["my_img"].width = 640;
+     document.images["my_img"].height = 480;
+
+     var img1 = "https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/img1.png";
+     var img2 = "https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/img2.png";
+     var img3 = "https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/img3.png";
+
+     var change_image = function(img_path){
+	 document.images["my_img"].src = img_path;
+     }
+     
+     var slide = function(){
+	 var crnt_path = document.images["my_img"].src;
+	 switch(crnt_path){
+	     case img1:
+		 change_image(img2);
+		 break;
+	     case img2:
+		 change_image(img3);
+		 break;
+	     case img3:
+		 change_image(img1);
+		 break;
+	     default:
+	 }
+     }
+
+     var start_slide = function(){
+	 var interval_id = setInterval("slide()", 5000);
+	 var button =  document.getElementById("slide_button"); 
+	 button.value = "停止";
+	 button.onclick = new Function("stop_slide("+ interval_id + ")");
+     }
+     
+     var stop_slide = function(interval_id){
+	 clearInterval(interval_id)
+	 var button =  document.getElementById("slide_button");
+	 button.value = "スライドショー開始";
+	 button.onclick = new Function("start_slide()");
+     }
+     
+    </script>
+</html>
