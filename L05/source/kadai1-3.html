@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <head>
+	<style type="text/css">
+	 table.table {
+	     width: 25%;
+	     border-collapse: collapse;
+	 }
+	 table.table td.color{
+	     background-color: #cccccc;
+	 }
+	</style>
+	<title>課題1−3</title>
+    </head>
+    <body>
+	<script type="text/javascript">
+	 var num = prompt("好きな数値を入れてください．");
+	 document.write('<table class="table" border>');
+
+	 document.write("<tr>");
+	 document.write('<td class="color">', "べき数", "</td>");
+	 document.write('<td class="color">', num, "</td>");
+	 document.write("</tr>");
+
+	 for(var i = 0; i < 6; i++){
+	     document.write("<tr>");
+	     document.write('<td class="color">', i, "</td>");
+	     document.write("<td>", Math.pow(num, i), "</td>");
+	     document.write("</tr>");
+	 }
+
+	 document.write("</table>");
+	 
+	</script>
+    </body>
+</html>

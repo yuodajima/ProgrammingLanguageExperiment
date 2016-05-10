@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+     var string = prompt("好きな言葉を入れてください．");
+     var word = prompt("除きたい文字を入れてください．");
+     var num = count(string, word);
+     alert("選んだ文字の個数: " + num);
+     var new_string = string.replace(new RegExp(word, 'g'), "");
+     alert("削除した結果: " + new_string);
+
+     function count(string, word){
+	 return string.split(word).length - 1;
+     };
+    </script>
+    <head>
+	<title>課題1−2</title>
+    </head>
+    <body>
+    </body>
+</html>
