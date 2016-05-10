@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題1−5</title>
+    </head>
+    <body>
+	<script type="text/javascript">
+	 document.write("<h1>Welcome to my homepage!</h1>");
+	 document.write("<h2>This page is automatically moved to IED within 5 seconds.</h2>");
+	</script>	    
+    </body>
+    <script type="text/javascript">
+     var shift_page = function(){ 	 
+	 window.location.href = 'http://www.ied.inf.uec.ac.jp/';
+     } 
+     window.setTimeout("shift_page()", 5000);
+    </script>
+</html>
