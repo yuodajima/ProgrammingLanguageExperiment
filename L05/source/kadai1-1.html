@@ -1,7 +1,15 @@
+<!--
+     課題1−1
+     21世紀頭の日付から現在の日付の時間差を取る．
+     その時間を86400000ミリ秒で割ると日数になる．
+     parseIntを取ることで小数点以下切り捨てで日数を考えられる．
+     これをalertで表示した．
+   -->
+
 <!DOCTYPE HTML>
 <html lang="ja">
-    <meta charset="UTF-8">
-    <script>
+    <meta charset="utf-8">
+    <script type="text/javascript">
      var today = new Date();
      var date_2000 = new Date(2000, 0, 1);
      var nissu = parseInt((today - date_2000)/86400000); 

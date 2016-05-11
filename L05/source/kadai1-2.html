@@ -1,8 +1,15 @@
+<!--
+     課題1−2
+     文字列と除く文字を受け取る．
+     文字列中の除く文字について文字列を配列に分割しその数−1が除く文字数としてカウントされる．
+     文字の削除は正規表現による空文字列との置換で実装した．
+   -->
+
 <!DOCTYPE HTML>
 <html lang="ja">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <script type="text/javascript">
-     var string = prompt("好きな言葉を入れてください．");
+     var string = prompt("文字列を入れてください．");
      var word = prompt("除きたい文字を入れてください．");
      var num = count(string, word);
      alert("選んだ文字の個数: " + num);
