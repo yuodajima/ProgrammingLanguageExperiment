@@ -1,0 +1,31 @@
+<!--
+     課題2-2
+     randomメソッドによって0から9までの乱数を生成し，値によって色を選択
+     setIntervalメソッドで文字色変更のためのメソッドsetcolorを1秒間隔で呼び出す
+   -->
+
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題2-2</title>
+    </head>
+    <body>
+	<div id="text">あめんぼあかいなあいうえお</div>
+	<script type="text/javascript">
+	 setInterval("setcolor()", 1000);
+	 var setcolor = function(){
+	     var div = document.getElementById("text");
+	     var rand = Math.random() *10 ;
+
+	     if(rand < 3)
+	     	 var color = "red";
+	     else if( rand > 3&&rand < 6)
+		 var color = "blue"
+	     else
+		 var color = "yellow"
+	     div.style.color = color;
+	 }
+	</script>	    
+    </body>
+</html>
