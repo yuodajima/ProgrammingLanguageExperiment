@@ -1,0 +1,28 @@
+<!--
+     課題2-1
+     8進数3桁で表される範囲の10進数乱数を発生させる
+     これを8進数に変換した後，小数点以下切り捨て
+     8進数表記を10進数表記111で剰余をとっているが，実際は互いが10進数として計算される
+     ゾロ目は111との剰余が0になる
+   -->
+
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題2-1</title>
+    </head>
+    <body>
+	<script type="text/javascript">
+	 document.write("<table>")
+	 for(i = 0; i < 50; i++){
+	     var oct = Math.floor((Math.random() * 8*8*8).toString(8))
+	     if(oct % 111 !== 0  || oct === 0)
+		 document.write("<tr><th>" + oct + "</th></tr>")
+	     else
+	    document.write('<tr><th><font color="#ff0000">' + oct + "</font>" + "</th></tr>")
+	 }
+	 document.write("</table>")
+	</script>	    
+    </body>
+</html>
