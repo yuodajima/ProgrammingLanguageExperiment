@@ -1,0 +1,45 @@
+<!--
+     課題2-5
+     ボタンクリックで上下にスクロール
+     ループによってで1pxごとにスクロールさせる
+     Chromeブラウザで確認すると一瞬で飛ぶようです
+   -->
+
+
+<html lang="ja">
+    <meta charset="utf-8"> 
+    <head>
+	<title>課題2-5</title>
+    </head>
+    <script type="text/javascript">
+
+     var scroll_down = function(){
+	 for(var i = 0; i < 500; i++)
+	     window.scrollBy(0,1)
+     }
+     
+     var scroll_up = function(){
+	 for(var i = 0; i < 500; i++)
+	     window.scrollBy(0,-1);
+     }
+     
+     var scroll_top = function(){
+	 for(var i = 0; i < 1000; i++)
+	     window.scrollTo(0,-1);
+     }
+     
+    </script>
+    
+    <body>
+	<h1>クレタ島の風景</h1>
+	写真ごとに上下スクロール<br>
+	<img src="https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece1.jpg"><br>
+	<button onclick="scroll_down()">The next photo</button><br>
+	<img src="https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece2.jpg"><br>
+	<button onclick="scroll_up()">The previous photo</button>
+	<button onclick="scroll_down()">The next photo</button><br>
+	<img src="https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece3.jpg"><br>
+	<button onclick="scroll_up()">The previous photo</button><br>
+	<button onclick="scroll_top()">Top</button><br>
+    </body>
+</html>
