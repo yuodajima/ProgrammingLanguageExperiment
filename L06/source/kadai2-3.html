@@ -1,0 +1,31 @@
+<!--
+     課題2-3
+     初期位置(0, 50)に配置した画像を10pxずつ左に移動させる関数を作成
+     setInterval関数でこれを0.1秒おきに呼び出す
+     初期位置を指定しないと上記関数だけでは動かないことが判明した
+   -->
+
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題2-3</title>
+    </head>
+    </style>
+    <script type="text/javascript">
+     var i = 1;
+     
+     function move_left(){
+	 if(i <= 40){
+	     document.getElementById("image").style.left = 10 * (i++) + "px";   	// console.log(document.getElementById("image").style.left);	 
+	 }
+     }
+     
+     setInterval(move_left, 100);
+    </script>	    
+    <body>
+	<div id="image" style="position:absolute; left:0; top:50">
+	    <img src="http://www.ils.uec.ac.jp/~yoneda_lab/material/uec-logo2.jpg">
+	</div>
+    </body>
+</html>
