@@ -1,0 +1,35 @@
+<!--
+     課題3-1
+     ログイン名とパスワードで対応する辞書を作成
+     受け取った文字列で対応関係があればページ遷移する
+   -->
+
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題3-1</title>
+    </head>
+    <script type="text/javascript">
+     var hash = {'name':'pass'}
+
+     
+     function charange(){
+	 var name = document.forms.nform.name.value
+	 var pass = document.forms.pform.pass.value
+
+	 if(hash[name] === pass)
+	     window.location.href = 'http://www.uec.ac.jp/'
+	 
+	 /* console.log(name)
+	    console.log(pass) */
+     }  
+    </script>	    
+    <body>
+	Login Name
+	<form name="nform"><input type="text" name="name"></form>
+	Password
+	<form name="pform"><input type="password" name="pass"></form>
+	<form name="sbutton"><input type="button" name="submit" value="送信" onclick="charange()"></form>
+    </body>
+</html>
