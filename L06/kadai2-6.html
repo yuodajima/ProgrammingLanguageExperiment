@@ -1,0 +1,67 @@
+<!--
+     課題2-6
+     Cookieに名前，趣味，閲覧回数を記録する
+     再閲覧時に趣味を変更するかどうか尋ねる
+     Cookieにデータを保存するところまでは出来たものの，キーと値の組で
+     Cookie内のデータを取り出すこと，また更新する方法がわからなかった
+   -->
+
+
+<html lang="ja">
+    <meta charset="utf-8"> 
+    <head>
+	<title>課題2-6</title>
+    </head>
+    <body>
+	<script type="text/javascript">
+	 function set_user(){
+	     var u_name = prompt("名前を入力してください");
+	     var u_hobby = prompt("趣味を入力してください");
+	     if (u_name == "" || u_hobby == ""){
+		 set_user();
+	     }
+	     document.cookie = 'name=' + u_name + ';max-age=30';
+	     document.cookie = 'hobby=' + u_hobby + ';max-age=30';
+	     document.cookie = 'dummy=' + "" + ';max-age=30';
+	     console.log(document.cookie);
+	 }
+	</script>
+	<h1>Welcome to this page!!</h1>
+	<script type="text/javascript">
+	 var userName = document.cookie;
+	 if (userName == "")
+	     set_user( );
+	 
+
+	 var name = cut_fb(new String(document.cookie), 'name=', ';');
+	 var hobby = cut_fb(new String(document.cookie), 'hobby=', ';');
+	 
+
+	 /* var name = getCookie("name");
+	    var hobby = getCookie("hobby"); */
+	 
+	 document.write(name + "さん，閲覧有り難うございます．");
+	 document.write(name + "さんの趣味は" + hobby + "です．");
+
+	 function cut_fb(string, front, back){
+	     string.indexOf('name=')
+	     var string_old = string.match(new RegExp("["+ front + "].*[" + back + "]"));
+	     var string_new = new String(string_old).replace(new RegExp(front, "g"), "").replace(new RegExp(back, "g"), "");
+	     return string_new; 
+	     
+	 } 
+
+	 function getCookie (key){
+	     var cookie,cookies = document.cookie.split(";");
+	     for(var i = 0;i<cookies.length;i++){
+		 cookie = cookies[i].split("=");
+		 if(cookie[0]===key){
+		     return decodeURIComponent(cookie[0]);
+		 }
+	     }
+	 }
+	 
+	</script>
+
+    </body>
+</html>

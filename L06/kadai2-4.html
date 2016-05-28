@@ -1,0 +1,68 @@
+<!--
+     課題2-4
+     環境変数に開いたウィンドウ情報を記録
+     対応するインデックスを指定してウィンドウを閉じる
+     開くurlが長いので別の語に辞書で対応させた
+   -->
+
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+	<title>課題2-4</title>
+    </head>
+    <script type="text/javascript">
+     var urls = { 
+	 'top' : "http://www.uec.ac.jp/",
+	 'pro' : "http://www.uec.ac.jp/prospect",
+	 'stu' : "http://www.uec.ac.jp/students",
+	 'alu' : "http://www.uec.ac.jp/alumni",
+	 'pub' : "http://www.uec.ac.jp/public"
+     }
+
+     var opened_window = [];
+
+     var open_window = function(url, id){
+	 opened_window[id] = window.open (urls[url], "new_window", "width=400, height=600");
+	 //console.log(open_window);
+     }
+
+     var close_window = function(id){
+	 if(typeof opened_window[id] !== "undefined")
+	     opened_window[id].close();
+     }
+     
+     
+    </script>
+    <body>
+
+	<table>
+	    <tr>
+		<td>トップ</td>
+		<td><button onclick="open_window('top', 0)">Open</button></td>
+		<td><button onclick="close_window(0)">Close</button></td>
+	    </tr>
+	    <tr>
+		<td> 受験生の方</td>
+		<td><button onclick="open_window('pro', 1)">Open</button></td>
+		<td><button onclick="close_window(1)">Close</button></td>
+	    </tr>
+	    <tr>
+		<td>在学生の方</td>
+		<td><button onclick="open_window('stu', 2)">Open</button></td>
+		<td><button onclick="close_window(2)">Close</button></td>
+	    </tr>
+	    <tr>
+		<td>卒業生の方</td>
+		<td><button onclick="open_window('alu', 3)">Open</button></td>
+		<td><button onclick="close_window(3)">Close</button></td>
+	    </tr>
+	    <tr>
+		<td>一般の方</td>
+		<td><button onclick="open_window('pub', 4)">Open</button></td>
+		<td><button onclick="close_window(4)">Close</button></td>
+	    </tr>
+	</table>
+	
+    </body>
+</html>
