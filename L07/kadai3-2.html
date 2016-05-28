@@ -1,0 +1,74 @@
+<!--
+     課題3-2
+     点数の比較で評価に入れる値を変更する
+     オブジェクトの取得はではなくgetElementByIdで行った
+   -->
+
+<html>
+    <head>
+	<title>課題3-2</title>
+	<script type="text/javascript">
+	 "use strict"
+	 function scrclr() {
+	     for (var i=0; i<document.tstform.length; i++) {
+		 if (document.tstform.elements[i].type != "button") {
+		     document.tstform.elements[i].value = "";
+		 }
+	     }
+	     document.tstform.english.focus();
+	 }
+	 function cave () {
+	     var eng_score = parseInt(document.tstform.english.value)
+	     var math_score = parseInt(document.tstform.mathmatics.value)
+	     
+	     document.tstform.tresult.value = ( eng_score + math_score )/2;
+	     if (document.tstform.tresult.value < 60) {
+		 document.tstform.tcmnt.value = "頑張らないと単位がとれないですよ";
+             } else if (document.tstform.tresult.value < 80) {
+                 document.tstform.tcmnt.value = "もう少し頑張りましょう";
+             } else {
+                 document.tstform.tcmnt.value = "よくできました";
+             }
+
+
+	     grade('eng_grade', eng_score)
+	     grade('math_grade', math_score)
+	     
+	 }
+
+	 function grade(id, score){
+	     var form = document.getElementById(id)
+	     if(score < 60)
+		 form.value = "不可"
+	     else if(score >= 60 && score < 70)
+		 form.value = "可"
+	     else if(score >=70 && score < 80)
+		 form.value = "良"
+	     else if(score >= 80 && score < 90)
+		 form.value = "優"
+	     else
+		 form.value = "秀"   
+	 }
+	 
+
+
+	</script>
+    </head>
+
+    <body onload = "scrclr()">
+	<form name = "tstform">
+	    英語の点数：<input type = "text" name = "english" size = 3>点
+	    数学の点数：<input type = "text" name = "mathmatics" size = 3>点<br>
+	    英語の評価：<input type="text"  id="eng_grade" size=3>
+	    数学の評価：<input type="text" id="math_grade" size=3><br>
+	    
+	    <input type = "button" onclick = "cave()" value = "平均計算">
+	    <input type = "button" onclick = "scrclr ()" value = "キャンセル">
+	    <p>
+		あなたの平均点は，<input type = "text" name = "tresult" size = 3>です．
+		<br>
+		コメント：<input type = "text" name = "tcmnt" size = 60><br>
+	</form>
+    </body>
+
+</html>
