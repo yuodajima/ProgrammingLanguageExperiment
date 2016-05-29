@@ -1,0 +1,29 @@
+<!--
+     課題3-3
+     選択した項目のvalueに画像のURLを設定する
+     imgのsrcプロパティを差し替えれば画像も差し替わる
+   -->
+
+<html>
+    <head>
+	<title>課題3-3</title>
+	<script type="text/javascript">
+	 function shiftImage(){
+	     var selected = document.bkmkmenu.bkmks.selectedIndex;
+	     var img = document.getElementById("img")
+	     img.src = document.bkmkmenu.bkmks.options[selected].value
+	 }
+	</script>
+    </head>
+    <body>
+	<form name = "bkmkmenu">
+	    <select name ="bkmks" size = "3">
+		<option value = "https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece1.jpg">imgGreece1
+		    <option value = "https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece2.jpg">imgGreece2
+			<option value = "https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece3.jpg">imgGreece3
+	    </select>
+	    <input type = "button" value ="ページ移動" onclick = "shiftImage()">
+	    <img id="img" src="https://www.ied.inf.uec.ac.jp/text/laboratory/javascript/imgGreece1.jpg">
+	</form>
+    </body>
+</html>
