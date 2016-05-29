@@ -1,0 +1,33 @@
+<!--
+     課題3-4
+     ラジオボタンのvalueに色名を指定
+     それに応じてfontのcolor要素を変更すると，文字色が差し替わる
+   -->
+
+<html>
+    <head>
+	<title>課題3-4</title>
+	<script type="text/javascript">
+	 function changeColor() {
+	     for (i=0; i<document.bkmkmenu.bkmks.length; i++) {
+		 if (document.bkmkmenu.elements[i].checked) {
+		     var str = document.getElementById('str')
+		     str.color = document.bkmkmenu.elements[i].value;
+		 }
+		 
+	     }
+	 }
+	</script>
+    </head>
+    <body>
+	<form name = "bkmkmenu">
+	    <font id="str">■■■■■</font><br>
+	    <input type = "radio" name = "bkmks" value = "red" >赤<br>
+	    <input type = "radio" name = "bkmks" value = "blue" >青<br>
+	    <input type = "radio" name = "bkmks" value = "yellow" >黄<br>
+	    <input type = "radio" name = "bkmks" value = "black" >黒<br>
+	    <input type = "radio" name = "bkmks" value = "green" >緑<br>
+	    	    <input type = "button" value = "文字色変更" onclick = "changeColor()">
+	</form>
+    </body>
+</html>
