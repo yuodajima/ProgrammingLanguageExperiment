@@ -1,0 +1,48 @@
+<!--
+     課題3-5-2
+     今日から2017年1月1日のミリ秒差から計算して日，時間，分，秒を割り出す
+     1秒おきにテキストを書き換える
+   -->
+
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+     "use strict"
+
+     function showRestTime2016(){
+	 var today = new Date();
+	 var date_2017 = new Date(2017, 0, 1);
+	 var diff_milli_seconds = parseInt(date_2017 - today)
+	 const MILLI_SECOND_TO_DAY = 24 * 60 * 60 *1000
+	 const MILLI_SECOND_TO_HOUR = MILLI_SECOND_TO_DAY / 24
+	 const MILLI_SECOND_TO_MINUTE = MILLI_SECOND_TO_HOUR / 60
+	 const MILLI_SECOND_TO_SECOND = MILLI_SECOND_TO_MINUTE / 60
+
+
+	 
+	 var days = Math.floor(diff_milli_seconds / MILLI_SECOND_TO_DAY)
+	 var hours = Math.floor((diff_milli_seconds - days * MILLI_SECOND_TO_DAY) / MILLI_SECOND_TO_HOUR)
+	 var minutes = Math.floor((diff_milli_seconds - days * MILLI_SECOND_TO_DAY - hours * MILLI_SECOND_TO_HOUR) / MILLI_SECOND_TO_MINUTE)
+	 var seconds = Math.floor((diff_milli_seconds
+				 - days * MILLI_SECOND_TO_DAY
+				 - hours * MILLI_SECOND_TO_HOUR
+				 - minutes * MILLI_SECOND_TO_MINUTE) / MILLI_SECOND_TO_SECOND)
+
+	 var str = "2016年の残り時間は" + days + "日" + hours +"時間" + minutes + "分" + seconds + "秒 です．"
+	 
+	 document.getElementById("time").innerHTML = str;
+
+
+     }
+
+     setInterval(showRestTime2016, 1000)
+    </script>
+    <head>
+	<title>課題3-5-2</title>
+    </head>
+    <body>
+	<div id="time"></div>
+	<input type="button" value="閉じる" onclick="window.close()">
+    </body>
+</html>
