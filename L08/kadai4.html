@@ -1,0 +1,42 @@
+<!--
+     課題4
+   -->
+
+<html>
+    <head>
+	<title>課題4</title>
+    </head>
+    <body>
+	残りチャレンジ回数：<div id="not"></div>
+	<h2 style="font-size:5em">
+	    <span id="S0">■</span> <span id="S1">■</span> 
+	    <span id="S2">■</span> <span id="S3">■</span> <span id="S4">■</span>
+	</h2>
+
+    </body>
+    <script type="text/javascript">
+
+     var not = 20;
+     document.getElementById("not").innerHTML = not;
+
+     function changeColor(){
+	 var color = {
+	     0 : "black",
+	     1 : "red",
+	     2 : "blue"
+	 }
+	 
+	 for(var i = 0; i < 5; i++){
+	     var tri = Math.floor(Math.random() * 3)
+	     document.getElementById("S"+i).style.color = color[tri]
+	 }
+	 if(not > 0)
+	     document.getElementById("not").innerHTML = --not;
+	 else
+	     
+     }
+     var change = setInterval(changeColor, 1000)
+     
+     
+    </script>
+</html>
