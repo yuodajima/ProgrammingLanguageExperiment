@@ -12,6 +12,7 @@
 	    <span id="S0">■</span> <span id="S1">■</span> 
 	    <span id="S2">■</span> <span id="S3">■</span> <span id="S4">■</span>
 	</h2>
+	<input type="button" value="start" onclick="setInterval(changeColor, 1000)">
 
     </body>
     <script type="text/javascript">
@@ -19,24 +20,70 @@
      var not = 20;
      document.getElementById("not").innerHTML = not;
 
+     var redClicked = 0;
+     var blueClicked = 0;
+     var notWait = true;
+     var waitTime = 1000;
+
+
+     function countUp(){
+	 if(notWait){
+	     redClicked++;
+	     not = not+2;
+	     document.getElementById("not").innerHTML = not;
+	     wait(waitTime);
+	 }
+     }
+     
+     function countDown(){
+	 if(notWait){
+	     blueClicked++;
+	     not = not-3;
+             document.getElementById("not").innerHTML = not;
+	     wait(waitTime);
+	     }
+     }
+
+     function wait(time){
+	 notWait = false;
+	 setTimeout(reset, time);
+
+	 function reset(){
+	     notWait = true;
+	 }
+     }
+
+     
      function changeColor(){
 	 var color = {
 	     0 : "black",
 	     1 : "red",
 	     2 : "blue"
 	 }
+	 var func = {
+	     0 : "",
+	     1 : "countUp()",
+	     2 : "countDown()"
+	 }
 	 
 	 for(var i = 0; i < 5; i++){
 	     var tri = Math.floor(Math.random() * 3)
-	     document.getElementById("S"+i).style.color = color[tri]
+	     var button = document.getElementById("S"+i)
+	     button.style.color = color[tri]
+	     button.onclick = new Function(func[tri])
 	 }
+
+	 
 	 if(not > 0)
 	     document.getElementById("not").innerHTML = --not;
-	 else
-	     
+	 else{
+	     var comment = "あなたの得点： " + redClicked + "\n"
+			 + "赤のクリック回数： " + redClicked + "\n"
+			 + "青のクリック回数： " + blueClicked + "\n";
+	     window.alert(comment)
+	     location.reload();
+	 }	     
      }
-     var change = setInterval(changeColor, 1000)
-     
      
     </script>
 </html>
