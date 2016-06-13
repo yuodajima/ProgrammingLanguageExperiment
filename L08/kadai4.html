@@ -1,5 +1,13 @@
 <!--
      課題4
+     色のランダム生成は黒，赤，青に0，1，2をそれぞれ対応させてMath.randomを用いた．
+     ■の色の変更は，変更する■のひとつ前の■の色を確認し，乱数生成のルールを変更することで実装した．
+     またこの際，色に合わせてクリック時に呼び出す関数名を差し替えてクリック時の処理を変更している．
+     これによりたかだか1つの赤と青しか一回の色替えで発生しない．
+     一定時間内での複数クリックの受付の制限は，クリック時に呼び出される関数に条件を加え，クリック時に立ち，
+     一定時間後に下がるフラッグを確認し，クリック回数とチャレンジ回数の変更処理の有無を分けることで実装した．
+     チャレンジ回数が0になるとゲームの結果をアラートで表示し，画面を再読み込みする．
+     これによってclearIntervalは使用していないが，タイマー処理は停止し，ゲーム状態もリセットされる．
    -->
 
 <html>
@@ -22,6 +30,10 @@
 
      var redClicked = 0;
      var blueClicked = 0;
+
+     var noRed = true;
+     var noBlue = true;
+     
      var notWait = true;
      var waitTime = 1000;
 
@@ -41,7 +53,7 @@
 	     not = not-3;
              document.getElementById("not").innerHTML = not;
 	     wait(waitTime);
-	     }
+	 }
      }
 
      function wait(time){
@@ -56,22 +68,39 @@
      
      function changeColor(){
 	 var color = {
-	     0 : "black",
-	     1 : "red",
-	     2 : "blue"
+	    0 : "black",
+	    1 : "red",
+	    2 : "blue"
 	 }
 	 var func = {
-	     0 : "",
-	     1 : "countUp()",
-	     2 : "countDown()"
+	     "black" : "",
+	     "red" : "countUp()",
+	     "blue": "countDown()"
 	 }
 	 
 	 for(var i = 0; i < 5; i++){
-	     var tri = Math.floor(Math.random() * 3)
-	     var button = document.getElementById("S"+i)
-	     button.style.color = color[tri]
-	     button.onclick = new Function(func[tri])
+	     
+	     for(var j = 0; j < i; j++){
+		 var  prevButtonColor =  document.getElementById("S"+j).style.color;
+		 if(prevButtonColor === "red") noRed = false;
+		 if(prevButtonColor === "blue") noBlue = false;
+//		 console.log(noRed);
+//		 console.log(noBlue);
+		 console.log(prevButtonColor);
+	     }
+
+	     var tri = 0;
+	     if(noRed && noBlue) tri = Math.floor(Math.random() * 3);
+	     else if(noRed && !noBlue)  tri = Math.floor(Math.random() * 2);
+	     else if(!noRed && noBlue)  tri =  2 * Math.floor(Math.random() * 2);
+	     else tri = 0;
+	     
+	     var button = document.getElementById("S"+i);
+	     button.style.color = color[tri];
+	     button.onclick = new Function(func[color[tri]]);
 	 }
+
+	 noRed = noBlue = true; 
 
 	 
 	 if(not > 0)
