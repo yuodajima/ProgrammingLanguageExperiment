@@ -19,18 +19,18 @@ Nmax = Fs * dur  # サンプル点の数
 t = np.arange(Nmax) * delta
 Fcs = [262, 294, 330, 349, 392, 440, 494, 523]
 
-def getFreq(Fc, Fs, dur):
+def GenFreq(Fc, Fs, dur):
     return Amp * np.sin( 2. * np.pi * Fc * t )
 
 
-y1 = getFreq(262, Fs, dur)
-y2 = getFreq(294, Fs, dur)
-y3 = getFreq(330, Fs, dur)
-y4 = getFreq(349, Fs, dur)
-y5 = getFreq(392, Fs, dur)
-y6 = getFreq(440, Fs, dur)
-y7 = getFreq(494, Fs, dur)                    
-y8 = getFreq(523, Fs, dur)
+y1 = GenFreq(262, Fs, dur)
+y2 = GenFreq(294, Fs, dur)
+y3 = GenFreq(330, Fs, dur)
+y4 = GenFreq(349, Fs, dur)
+y5 = GenFreq(392, Fs, dur)
+y6 = GenFreq(440, Fs, dur)
+y7 = GenFreq(494, Fs, dur)                    
+y8 = GenFreq(523, Fs, dur)
 
 x = np.hstack((y1, y2, y3, y4, y5, y6, y7, y8))
 write( fname, Fs, np.int16( x ).reshape(Nmax * 8, 1) )  
