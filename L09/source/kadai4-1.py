@@ -80,9 +80,11 @@ def cutOff(filename, Nmax, fc, ofname):
     s.plot()
     
 
-cutOff(ifname0, 65536*2, 6000, ofname0)
-cutOff(ifname1, 65536*8, 6000, ofname1)
-cutOff(ifname2, 65536*4, 6000, ofname2)
+cutOff(ifname0, 65536*2, 4000, ofname0)
+cutOff(ifname1, 65536*8, 4000, ofname1)
+cutOff(ifname2, 65536*4, 4000, ofname2)
+
+
 
 #実行結果
 #以下のように変換し，結果をファイルに出力した．
@@ -90,7 +92,8 @@ cutOff(ifname2, 65536*4, 6000, ofname2)
 #HAL0001noiseColored.wav->kadai4-1-1.wav
 #HAL0002noiseColored.wav->kadai4-1-2.wav
 #以下，順に聴きとった音声
-#こんにちは，私はKyokoです．
-#茶色い狐が私のろまな犬を飛び越えた．
-#おはようチャンドラ博士．私はHALです．今日の最初の授業をはじめてください．
-#いずれの音声ファイルも6000Hzを基準にカットした．
+#こんにちは，私の名前はKyokoです．
+#足の早い茶色の狐がのろまな犬を飛び越える．スペインの雨は主に平地に降る．
+#おはようChandler博士．私はHALです．今日の最初の授業をはじめてください．
+#いずれの音声ファイルも4000Hzを基準にカットした．
+#抽出した音声信号については別図に示す．
