@@ -17,7 +17,6 @@ delta = 1./Fs  # サンプリング間隔
 Nmax = Fs * dur  # サンプル点の数
 
 t = np.arange(Nmax) * delta
-Fcs = [262, 294, 330, 349, 392, 440, 494, 523]
 
 def GenFreq(Fc, Fs, dur):
     return Amp * np.sin( 2. * np.pi * Fc * t )

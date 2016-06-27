@@ -62,14 +62,6 @@ class ShowWav(object):
 
         plt.show()
 
-# y0 = read( ifname0 )
-# Fs0 = y0[0]          # サンプリングレート
-# Nmax0 = 65536*2     # FFT のため 2 のベキにしておく
-# yl0 = y0[1][:Nmax]   # 左音声の 0〜Nmax-1 までを信号とする
-# fc0 = 6000          # 500Hz で遮断してみる
-# yflt0 = LowPass( yl0, fc0, Fs0 )
-# write(ofname0, Fs0, np.int16( np.real(yflt0) ).reshape(Nmax0,1) ) 
-
 def cutOff(filename, Nmax, fc, ofname):
     y = read( filename )
     Fs = y[0]           # サンプリングレート
