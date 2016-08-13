@@ -11,7 +11,7 @@ import matplotlib.pylab as plt
 Fs = 22050.  # サンプリング周波数 22 KHz
 fname = 'kadai2-1.wav'
 dur = 3.    
-Amp = 4000.  # 振幅 (とりあえず)
+Amp = 4000.  
 
 delta = 1./Fs  # サンプリング間隔
 Nmax = Fs * dur  # サンプル点の数

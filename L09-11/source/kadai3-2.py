@@ -74,7 +74,6 @@ class GenFreq( object ):
         return self.Amp * np.sin( 2. * np.pi * freq * self.t )
         
 
-# ド・ミ・ソの和音(CEG) を作ってみる
 
 Fs = 44100.                  # サンプル周波数
 s = GenFreq( Fs, dur=1.)
@@ -83,7 +82,7 @@ s.addTone( 'E' )
 s.addTone( 'G' )
 N = s.getLen()
 
-# scipy.wav.iofile の write をインポートしておくこと
+
 write( 'kadai3-2.wav', Fs, s.getSound().reshape( (N, 1) ) )
 s = ShowWav('kadai3-2.wav')
 s.plot()
