@@ -1,0 +1,42 @@
+\section{課題2}
+
+\subsection{その1}
+家系図中の特定の深さにいる人名（特定の代に生まれた人物）を全て表示する関数get-depthを作成する．
+木をkakeizu，深さをdepthとしてget-depth(kakeizu, depth)のアルゴリズムは次の通り．
+
+\begin{enumerate}
+\item kakeizuが空であれば()を返す．
+\item depthが1であれば，kakeizuの後続の先頭をとる．
+\item depthがそれ以外（2以上）ならばkakeizuにdepthを1小さくしてget-depthをmapで適用する．そしてapply，appendでリストに連結する．
+\end{enumerate}
+
+3の手順で代を下ることに対応し，depthが1になったときが目的の代の一つ上の代（親の代）になる．
+2で3の手順で下ってきた代の後続に対してcarをmapすることで，目的の代の子孫を探し当てることができる．
+
+この家系図はreadするだけで外部ファイルから木構造として取り込めるようになっている．
+LISPの思想が「リストを簡単に扱うこと」であることから優れていると同時に自然であると言える．
+他の言語ではJSONで記述し，専用のライブラリでパースすることが思い当たるがSchemeよりずっとコード量は多くなるだろう．
+以下実行例．
+
+\begin{quote}
+
+  (define kakeizu
+    (read
+       (open-input-file "./kakeizu")))
+
+  (get-depth kakeizu 4)
+  
+  (get-depth kakeizu 6)
+  
+  ;実行結果
+  
+  ;(家宣 宗尹 家重 宗武)
+  
+  ;(家斎 斎敦 斎匡)
+
+\end{quote}
+
+\subsection{その2}
+
+課題その2については回答しなかった．
+

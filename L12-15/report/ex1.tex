@@ -1,0 +1,111 @@
+\section{課題1}
+
+\subsection{その1}
+数値型のデータが並んだ木を探索し，特定の数値と一致するものがあれば\#tを，なければ\#fを返す関数tree-member?関数を作成．
+treeを木，valueを探す値としてtree-member(tree, value)のアルゴリズムは次の通り．
+
+\begin{enumerate}
+\item treeが空であれば\#fを返す．
+\item treeがペア対であれば，treeの先頭と後続に対してtree-member?を適用しorをとる．
+\item treeがそれ以外（つまり数値）ならばtreeとvalueの一致を確認する．
+\end{enumerate}
+
+2でtree-member?の返り値にorを取ることで，一致する値を異なる階層の中で一つでも見つければ必ず\#tを返す．
+\#fは一つも見つからなかった場合のみに返り，orは値の探索に都合が良い．
+そして2でのtree-member?の再帰が木の中の走査の役割を持っている．
+以下実行例．
+
+\begin{quote}
+
+  (define TREE '(1 (2 (3 4)) 6 (7 8 9)))
+  
+  (define MYTREE '((3 5) 3 7 (4 5 7) 8))
+  
+  
+  (tree-member? TREE 4)
+  
+  (tree-member? TREE 12)
+  
+  (tree-member? MYTREE 8)
+  
+  (tree-member? MYTREE 9)
+  
+  その1実行結果
+  
+  ;\#t
+  
+  ;\#f
+  
+  ;\#t
+  
+  ;\#f
+  
+\end{quote}
+
+
+\subsection{その2}
+木に対してmapを行うmap-tree関数の作成．
+functionを関数，treeを木としてmap-tree(function, tree)のアルゴリズムは次の通り．
+
+\begin{enumerate}
+\item treeが空であれば()を返す．
+\item treeがペア対であれば，treeの先頭と後続に対してmap-treeを適用しconsで連結する．
+\item treeがそれ以外（つまり数値）ならばtreeにfunctionを適用する．
+\end{enumerate}
+
+大部分はその1と同じアルゴリズムである．
+再帰の部分をconsで連結することで元の木と同じ構造をもう一度作って返している．
+以下実行例．
+
+\begin{quote}
+
+  (define TREE '(1 (2 (3 4)) 6 (7 8 9)))
+  
+  (define MYTREE '((3 5) 3 7 (4 5 7) 8))
+  
+  (map-tree even? TREE)
+  
+  (map-tree even? MYTREE)
+  
+  ;その2実行結果
+  
+  ;(\#f (\#t (\#f \#t)) \#t (\#f \#t \#f))
+  
+  ;((\#f \#f) \#f \#f (\#t \#f \#f) \#t)
+  
+\end{quote}
+
+\subsection{その3}
+cons，car，cdrを用いないmap-treeであるmap-tree2の作成．
+map-tree2(function, tree)のアルゴリズムは次の通り．
+
+\begin{enumerate}
+\item treeが空であれば()を返す．
+\item treeがペア対であれば，treeに対してmap-tree2を適用するという無名関数をmapする．
+\item treeがそれ以外（つまり数値）ならばtreeにfunctionを適用する．
+\end{enumerate}
+
+map-tree2を使う無名関数を作成するのはmapの引数に与えたいためである．
+つまり1変数の関数を作りたいためである．
+mapより，返る木は引数の木と同じ構造になる．
+これにより木構造に対するmapが実現できる．
+以下実行例．
+
+\begin{quote}
+
+  (define TREE '(1 (2 (3 4)) 6 (7 8 9)))
+  
+  (define MYTREE '((3 5) 3 7 (4 5 7) 8))
+
+  (map-tree2 odd? TREE)
+  
+  (map-tree2 odd? MYTREE)
+  
+  ;その3実行結果
+  
+  ;(\#t (\#f (\#t \#f)) \#f (\#t \#f \#t))
+  
+  ;((\#t \#t) \#t \#t (\#f \#t \#t) \#f)
+
+\end{quote}
+

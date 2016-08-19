@@ -1,0 +1,175 @@
+\section{課題3}
+
+\subsection{その1}
+逆ポーランド記法で作られる整関数を微分する関数diffを作成する．
+微分される関数をshikiとして，diff(shiki)のアルゴリズムは次の通り．
+
+\begin{enumerate}
+\item shikiがペア対でないか調べる．
+  \begin{enumerate}
+  \item ペアでなく数値ならば0を返す．
+  \item ペアでなく数値でもなければ（文字ならば）1を返す．
+  \end{enumerate}
+\item shikiがペア対であれば，関数木の先頭の記号を調べる．
+  \begin{enumerate}
+  \item +ならば(+ 第1引数のdiff 第2引数のdiff)を返す．
+  \item −ならば(- 第1引数のdiff 第2引数のdiff)を返す．
+  \item *ならば(+ (* 第1引数 第2引数のdiff) (* 第1引数のdiff 第2引数))を返す． 
+  \item **ならば(* 第2引数 (* 第1引数のdiff (** 第1引数 (- 第2引数 1))))を返す．
+  \end{enumerate}
+\end{enumerate}
+
+3と4が複雑になっているが，合成関数の微分の定義をなぞったものである．
+計算の中途にシンボルとシンボルでなく評価すべき項が混ざっている．
+diffや演算子の評価の必要な物は準クォートで対応した．
+実行結果は以下の通り．
+
+\begin{quote}
+  
+  (diff 1)
+  
+  (diff 'x)
+  
+  (diff '(+ x 5))
+  
+  (diff '(+ (+ (** x 2) (* 4 x)) 3))
+
+  ;実行結果
+
+  ;0
+  
+  ;1
+  
+  ;(+ 1 0)
+  
+  ;(+ (+ (* 2 (* 1 (** x 1))) (+ (* 4 1) (* 0 x))) 0)
+
+\end{quote}
+
+\subsection{その2}
+整関数の接線を求める関数tangentを作成する．
+微分される関数をfx，接点のx座標をaとして，tangent(fx, a)のアルゴリズムは以下の通り．
+
+\begin{enumerate}
+\item fxにdiffを適用したf'(x)にaを代入した勾配f'(a)をevalで作成する．
+\item fxにaを代入したf(a)をevalで作成する．
+\item y = f'(a)(x - a) + f(a) = f'(a)x + f(a) - f'(a)a となるように作成した値をリスト化して返す．
+\end{enumerate}
+
+以下実行結果．
+
+
+\begin{quote}
+  
+  (define fx '(+ (+ (** x 2) (* 4 x)) 3))
+  
+  (define ** expt)
+  
+  (tangent fx 0)
+  
+  (tangent fx 4)
+  
+  ;実行結果
+  
+  ;(+ (* 4 x) 3)
+  
+  ;(+ (* 12 x) -13)
+
+\end{quote}
+
+\subsection{その3}
+式中に存在する0や1との積といった冗長な表現を省略した式を返す関数simpleを作成する．
+式をformulaとして，simple(formula)のアルゴリズムは次の通り．
+
+\begin{enumerate}
+\item 各演算子に対応した省略のルールを持った関数を作成．
+  \begin{description}
+  \item [simple+]p，qを非演算子として，pが0ならばq，qが0ならばp，それ以外の場合(+ p q)を返す．
+  \item [simple-]p，qを非演算子として，pが0ならば−q，qが0ならばp，それ以外の場合(− p q)を返す．
+  \item [simple*]p，qを非演算子として，pとqの少なくとも一方が0ならば0，pが1ならばq，qが1ならばp，それ以外の場合(* p q)を返す．
+  \item [simple**]p，qを非演算子として，qが0ならば1，qが1ならばp，それ以外の場合(** p q)を返す．
+  \end{description}
+\item formulaが定数または文字の場合同じ値を返す．
+\item formulaがペアならば演算子を読み取って対応する1の関数のいずれかを当てる．
+  ここで1の関数に当てる引数をsimpleで再帰的に計算することで式内の全ての項が省略の対象になる．
+\end{enumerate}
+
+演算の末端を省略修正したものを受け取り，それをまた省略修正して返し...とすることで式全体が修正される．
+以下実行結果．
+
+\begin{quote}
+  
+  `(+ 8 (* 0 x))
+  
+  (simple `(+ 8 (* 0 x)))
+  
+  (diff '(+ (+ (** x 2) (* 4 x)) 5))
+  
+  (simple (diff '(+ (+ (** x 2) (* 4 x)) 5)))
+  
+  ;実行結果
+  
+  ;(+ 8 (* 0 x))
+  
+  ;8
+  
+  ;(+ (+ (* 2 (* 1 (** x 1))) (+ (* 4 1) (* 0 x))) 0)
+  
+  ;(+ (* 2 x) 4)
+
+\end{quote}
+
+\subsection{その4}
+
+式中の+を二項の和ではなくそれ以上の複数の項の総和を取るものとして扱う．
+その際にも微分を行えるdiff，省略ができるsimpleであるdiff2，simple2を作成する．
+式をformulaとしたとき，diff2(formula)のアルゴリズムは以下の通り．
+
+\begin{enumerate}
+\item 関数のリストにdiffをmapする．
+\end{enumerate}
+
+和の微分は各項全ての項の微分の総和であるためdiffのmapで表せる．
+
+simple2(formula)のアルゴリズムは以下の通り．
+\begin{enumerate}
+\item リストから条件を満たす要素を消す関数remove(predicate, list)を定義．
+  \begin{enumerate}
+  \item リストの先頭が条件を満たすならば無視してリストの後続にremoveを適用．
+  \item リストの先頭が条件を満たさないならば先頭と後続にremoveを適用したものをconsでつなげる．
+  \end{enumerate}
+\item 省略した式から0の和をremoveで削除したものをsimpleでmapする．
+\end{enumerate}
+
+simpleも同様に総和にされるすべての項を省略の対象にすれば良いためmapする．
+この際総和の中の0の和はsimpleでは追い切れないため，mapする前にremoveで削除しておく．
+
+
+以下実行例．
+\begin{quote}
+  
+  (define fx4 `(+ 1 (* 3 x) (* 2 (** x 2)) (* 5 (** x 3)) (* 2 (** x 4))))
+  
+  (diff2 fx4)
+  
+  (simple2 (diff2 fx4))
+  
+  ;実行結果
+  
+  ;(+
+  
+  ; 0
+  
+  ; (+ (* 3 1) (* 0 x))
+  
+  ; (+ (* 2 (* 2 (* 1 (** x 1)))) (* 0 (** x 2)))
+  
+  ; (+ (* 5 (* 3 (* 1 (** x 2)))) (* 0 (** x 3)))
+  
+  ; (+ (* 2 (* 4 (* 1 (** x 3)))) (* 0 (** x 4)))
+  
+  ;)
+  
+  ;(+ 3 (* 2 (* 2 x)) (* 5 (* 3 (** x 2))) (* 2 (* 4 (** x 3))))
+
+\end{quote}
