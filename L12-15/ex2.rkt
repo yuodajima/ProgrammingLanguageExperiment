@@ -1,14 +1,20 @@
+;その1
 (define kakeizu
     (read
-       (open-input-file "/usr/local/class/scheme/kakeizu")))
+       (open-input-file "./kakeizu")))
 
 (define get-depth
   (lambda (kakeizu depth)
     (cond ((null? kakeizu) '())
           ((= depth 1) (map car (cdr kakeizu)))
-          (else get-depth (cdr kakeizu) (- depth 1))
+          (else (apply append (map (lambda (l) 
+                              (get-depth l (- depth 1))) (cdr kakeizu))))
     )))
 
+(get-depth kakeizu 4)
+(get-depth kakeizu 6)
 
-(get-depth kakeizu 2)
+;実行結果
+;(家宣 宗尹 家重 宗武)
+;(家斎 斎敦 斎匡)
 
